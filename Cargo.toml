@@ -1,0 +1,22 @@
+[package]
+name = "narinfo-tools"
+version = "0.1.0"
+description = "Sign narinfo files"
+edition = "2021"
+license = "MIT/Apache-2.0"
+homepage = "https://github.com/thoughtpolice/narinfo-tools"
+readme = "README.md"
+authors = [
+    "Austin Seipp <aseipp@pobox.com>"
+]
+
+[profile.release]
+debug = 0
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+[dependencies]
+anyhow = "1"
+libc = "0.2"
