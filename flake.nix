@@ -38,12 +38,14 @@
             version = "0.1.0";
             src = ./.;
 
-            nativeBuildInputs = [ pkgs.wasmtime ];
+            nativeBuildInputs = [ pkgs.wasmtime pkgs.binaryen pkgs.wabt ];
 
             buildPhase = "cargo build -j $NIX_BUILD_CORES --target wasm32-wasi --frozen --release";
             installPhase = ''
               mkdir -p $out/{bin,share}
-              mv target/wasm32-wasi/release/${pname}.wasm $out/share
+              cp target/wasm32-wasi/release/${pname}.wasm ${pname}.orig.wasm
+              wasm-opt -Oz ${pname}.orig.wasm -o ${pname}.wasm
+              mv ${pname}.wasm $out/share
 
               touch $out/bin/${pname} && chmod +x $out/bin/${pname}
               echo "#!${pkgs.bash}/bin/bash" >> $out/bin/${pname}
