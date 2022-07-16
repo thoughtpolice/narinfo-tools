@@ -18,5 +18,6 @@ lto = true
 codegen-units = 1
 
 [dependencies]
+wee_alloc = "0.4"
 anyhow = "1"
 libc = "0.2"

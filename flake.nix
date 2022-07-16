@@ -52,7 +52,7 @@
               echo "exec ${pkgs.wasmtime}/bin/wasmtime $out/share/${pname}.wasm \$@" >> $out/bin/${pname}
             '';
 
-            cargoHash = "sha256-8LZXKhG+lRjhLeUEXDXavrsZV4HfrWSiMWljSKjDec0=";
+            cargoHash = "sha256-TEnT7W69l2z2cs49l3pbwSTkf1NF9qPB9ZClmcHG7o4=";
           };
         };
       });
