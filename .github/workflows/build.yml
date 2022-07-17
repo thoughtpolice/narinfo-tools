@@ -21,4 +21,4 @@ jobs:
       - name: Flake check
         run: nix flake check
       - name: Smoke run
-        run: nix run
+        run: curl -s https://cache.nixos.org/z4ddqkq231v5i113wa1kg0ccxgb4s4g7.narinfo | nix run . -- json
