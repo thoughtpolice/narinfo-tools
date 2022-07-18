@@ -21,3 +21,5 @@ codegen-units = 1
 wee_alloc = "0.4"
 anyhow = "1"
 libc = "0.2"
+base64 = "0.13"
+ed25519-dalek = "1"
