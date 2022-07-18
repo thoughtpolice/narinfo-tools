@@ -40,6 +40,15 @@ fn main() -> Result<()> {
             std::io::stdin().read_to_string(&mut content)?;
             let body = content.trim();
 
+            if body.lines().any(|l| l.starts_with("Sig:")) {
+                // if a signature already exists, don't sign again. nix itself
+                // doesn't actually support multiple signatures, it seems, so
+                // presumably this signature is from another trusted key, i.e.
+                // it might be from cache.nixos.org
+                println!("{}", body);
+                return Ok(());
+            }
+
             let sig = narinfo::sign_narinfo(&store_dir, &keys, body)?;
             let result = format!("{}\nSig: {}", body, sig);
             println!("{}", result);
